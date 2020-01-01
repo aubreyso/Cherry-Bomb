@@ -1,6 +1,7 @@
 // Store gameplay config variables
 var gameSettings = {
-      playerSpeed: 200,
+      //playerSpeed: 200,
+      playerSpeed: 350,
 }
 
 // Store game instance config variables   

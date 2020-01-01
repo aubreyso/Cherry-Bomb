@@ -32,14 +32,9 @@ class Scene2 extends Phaser.Scene
       this.playerTwo.setScale(4);
       this.playerTwoFlipped = false;
 
+      // prevent players from leaving screen
       this.playerOne.body.collideWorldBounds = true;
       this.playerTwo.body.collideWorldBounds = true;
-
-      //  Create our spring
-      //  The parameters are: createSpring(sprite1, sprite2, restLength, stiffness, damping, worldA, worldB, localA, localB)
-      //  See the docs for more details
-      //var spring = this.physics.p3.createSpring(this.playerOne, this.playerTwo, 20, 10, 1);
-
 
       // PLAYER ONE INPUT KEYS
       this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -50,27 +45,6 @@ class Scene2 extends Phaser.Scene
       // PLAYER TWO INPUT KEYS
       this.cursorKeys = this.input.keyboard.createCursorKeys();
    }
-
-
-   // moves ship down screen by speed
-   moveShip(ship, speed)
-   {
-      ship.y += speed;
-      if (ship.y > config.height)
-      {
-         this.resetShipPos(ship);
-      }
-   }
-
-
-   // resets ship to y=0, x=random when ship
-   resetShipPos(ship)
-   {
-      ship.y = 0;
-      var randomX = Phaser.Math.Between(0, config.width);
-      ship.x = randomX;
-   }
-
 
    update()
    {
@@ -86,6 +60,9 @@ class Scene2 extends Phaser.Scene
 
    movePlayerOneManager()
    {
+      //console.log(this.playerOne.x+" "+this.playerOne.y);
+      //console.log(this.normPosX(this.playerOne), this.normPosY(this.playerOne));
+
       this.playerOne.setVelocity(0);
 
       // LEFT
@@ -157,4 +134,29 @@ class Scene2 extends Phaser.Scene
    {
       player.flipX = !player.flipX;
    }
+
+   // moves ship down screen by speed
+   moveShip(ship, speed)
+   {
+      ship.y += speed;
+      if (ship.y > config.height)
+      {
+         this.resetShipPos(ship);
+      }
+   }
+
+
+   // resets ship to y=0, x=random when ship
+   resetShipPos(ship)
+   {
+      ship.y = 0;
+      var randomX = Phaser.Math.Between(0, config.width);
+      ship.x = randomX;
+   }
+
+   // return normalized x position
+   normPosX(player) {return (player.x-20)/920;}
+
+   // return normalized y position
+   normPosY(player) {return (player.y-32)/476;}
 }
