@@ -81,6 +81,7 @@ class Scene2 extends Phaser.Scene
       this.playerOne.setVelocity(0);
 
       // LEFT
+      //if (Phaser.Input.Keyboard.JustDown(this.keyA)) //single press
       if (this.keyA.isDown)
       {
          this.playerOne.setVelocityX(-gameSettings.playerSpeed);
