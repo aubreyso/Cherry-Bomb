@@ -8,7 +8,7 @@ var gameSettings = {
 var config = {
    width: 960,
    height: 540,
-   backgroundColor: 0x303030,
+   backgroundColor: 0x505050,
    scene: [Scene1, Scene2],
    physics: {
       default: "arcade",

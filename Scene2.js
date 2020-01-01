@@ -22,6 +22,7 @@ class Scene2 extends Phaser.Scene
       // create text object
       this.add.text(20, 20, "Playing game", {font: "25px Arial", fill: "yellow"});
 
+      // CREATE PLAYERS
       // create playerOne object
       this.playerOne = this.physics.add.image(config.width/2 - 50, config.height/2, "player");
       this.playerOne.setScale(4);
@@ -31,6 +32,18 @@ class Scene2 extends Phaser.Scene
       this.playerTwo = this.physics.add.image(config.width/2 + 50, config.height/2, "player");
       this.playerTwo.setScale(4);
       this.playerTwoFlipped = false;
+
+
+      // CREATE LINE
+      /*this.connectionLine = new Phaser.Geom.Line(
+         this.playerOne.x,
+         this.playerOne.y,
+         this.playerTwo.x,
+         this.playerTwo.y,
+         0xFFFFFF,
+         1.0,
+      );*/
+
 
       // prevent players from leaving screen
       this.playerOne.body.collideWorldBounds = true;
@@ -46,6 +59,7 @@ class Scene2 extends Phaser.Scene
       this.cursorKeys = this.input.keyboard.createCursorKeys();
    }
 
+
    update()
    {
       //this.moveShip(this.ship1, 1);
@@ -55,6 +69,7 @@ class Scene2 extends Phaser.Scene
       //this.background.tilePositionY -= 0.5;
       this.movePlayerOneManager();
       this.movePlayerTwoManager();
+      //this.add.strokeLineShape(line);
    }
 
 
