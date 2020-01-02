@@ -24,15 +24,23 @@ class Scene2 extends Phaser.Scene
 
       // CREATE PLAYERS
       // create playerOne object
-      this.playerOne = this.physics.add.image(config.width/2 - 50, config.height/2, "player");
+      /*this.playerOne = this.physics.add.image(config.width/2 - 50, config.height/2, "player");
+      this.playerOne.setScale(4);
+      this.playerOneFlipped = false;*/
+
+      this.playerOne = this.physics.add.sprite(config.width/2 - 50, config.height/2, "playerIdle");
+      this.playerOne.play("player_idle");
       this.playerOne.setScale(4);
       this.playerOneFlipped = false;
 
       // create playerTwo object
-      this.playerTwo = this.physics.add.image(config.width/2 + 50, config.height/2, "player");
+      this.playerTwo = this.physics.add.sprite(config.width/2 + 50, config.height/2, "playerIdle");
+      this.playerTwo.play("player_idle");
       this.playerTwo.setScale(4);
       this.playerTwoFlipped = false;
 
+      // test player class
+      //this.playerTest = new Player(this);
 
       // CREATE LINE
       /*this.connectionLine = new Phaser.Geom.Line(
@@ -146,10 +154,17 @@ class Scene2 extends Phaser.Scene
       }
    }
 
+   // flips player sprite
    flipSprite(player)
    {
       player.flipX = !player.flipX;
    }
+
+   // return normalized x position
+   normPosX(player) {return (player.x-20)/920;}
+   // return normalized y position
+   normPosY(player) {return (player.y-32)/476;}
+
 
    // moves ship down screen by speed
    moveShip(ship, speed)
@@ -169,10 +184,4 @@ class Scene2 extends Phaser.Scene
       var randomX = Phaser.Math.Between(0, config.width);
       ship.x = randomX;
    }
-
-   // return normalized x position
-   normPosX(player) {return (player.x-20)/920;}
-
-   // return normalized y position
-   normPosY(player) {return (player.y-32)/476;}
 }
