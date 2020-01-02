@@ -1,10 +1,11 @@
 class Player extends Phaser.GameObjects.Sprite
 {
-   constructor(scene)
+   movementSpeed = 150;
+   //movementSpeed = 350;
+
+   constructor(scene, x, y, p1)
    {
       // add to scene
-      var x = scene.playerOne.x;
-      var y = scene.playerOne.y;
       super(scene, x, y, "playerIdle");
       scene.add.existing(this);
 
@@ -16,6 +17,9 @@ class Player extends Phaser.GameObjects.Sprite
       this.play("player_idle");
       this.setScale(4);
       this.flipped = false;
+
+      // set playerOne/playerTwo controls
+      this.p1 = p1;
    }
 
 
@@ -23,40 +27,74 @@ class Player extends Phaser.GameObjects.Sprite
    {
       this.body.setVelocity(0);
 
-      // LEFT
-      if (scene.keyA.isDown)
+      // PLAYER 1 CONTROLS
+      if (this.p1)
       {
-         this.body.setVelocityX(-gameSettings.playerSpeed);
-         // flip sprite
-         if (this.flipped == false)
-            this.flipSprite();
-         this.flipped = true;
+         // LEFT
+         if (scene.keyA.isDown)
+         {
+            this.body.setVelocityX(-this.movementSpeed);
+            // flip sprite
+            if (this.flipped == false) this.flipSprite();
+            this.flipped = true;
+         }
+         // RIGHT
+         else if (scene.keyD.isDown)
+         {
+            this.body.setVelocityX( this.movementSpeed);
+            // flip sprite
+            if (this.flipped == true) this.flipSprite();
+            this.flipped = false;
+         }
+         // UP
+         else if (scene.keyW.isDown)
+         {
+            this.body.setVelocityY(-this.movementSpeed);
+         }
+         // DOWN
+         else if (scene.keyS.isDown)
+         {
+            this.body.setVelocityY( this.movementSpeed);
+         }
       }
-      // RIGHT
-      else if (scene.keyD.isDown)
+      // PLAYER 2 CONTROLS
+      else
       {
-         this.body.setVelocityX( gameSettings.playerSpeed);
-         // flip sprite
-         if (this.flipped == true)
-            this.flipSprite();
-         this.flipped = false;
-      }
-      // UP
-      if (scene.keyW.isDown)
-      {
-         this.body.setVelocityY(-gameSettings.playerSpeed);
-      }
-      // DOWN
-      else if (scene.keyS.isDown)
-      {
-         this.body.setVelocityY( gameSettings.playerSpeed);
+         // LEFT
+         if (scene.cursorKeys.left.isDown)
+         {
+            this.body.setVelocityX(-this.movementSpeed);
+            // flip sprite
+            if (this.flipped == false) this.flipSprite();
+            this.flipped = true;
+         }
+         // RIGHT
+         else if (scene.cursorKeys.right.isDown)
+         {
+            this.body.setVelocityX( this.movementSpeed);
+            // flip sprite
+            if (this.flipped == true) this.flipSprite();
+            this.flipped = false;
+         }
+         // UP
+         else if (scene.cursorKeys.up.isDown)
+         {
+            this.body.setVelocityY(-this.movementSpeed);
+         }
+         // DOWN
+         else if (scene.cursorKeys.down.isDown)
+         {
+            this.body.setVelocityY( this.movementSpeed);
+         }
       }
    }
-
 
    // flips player sprite
-   flipSprite()
-   {
-      this.flipX = !this.flipX;
-   }
+   flipSprite() {this.flipX = !this.flipX;}
+
+   // return normalized x position
+   normPosX() {return (this.x-20)/920;}
+
+   // return normalized y position
+   normPosY() {return (this.y-32)/476;}
 }

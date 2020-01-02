@@ -9,14 +9,7 @@ class Scene1 extends Phaser.Scene
 
    preload()
    {
-      // load images into memory
-      this.load.image("background", "assets/images/background.png");
-      this.load.image("ship1", "assets/images/ship.png");
-      this.load.image("ship2", "assets/images/ship2.png");
-      this.load.image("ship3", "assets/images/ship3.png");
-      
-      this.load.image("player", "assets/images/playersprite3.png");
-
+      // load player spritesheet
       this.load.spritesheet("playerIdle", "assets/images/player_spritesheet_idle.png",{
          frameWidth: 13,
          frameHeight: 16
