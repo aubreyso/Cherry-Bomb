@@ -14,6 +14,9 @@ class Scene1 extends Phaser.Scene
          frameWidth: 13,
          frameHeight: 16
       });
+
+      // load stem image
+      this.load.image("stemTop", "assets/images/stem_top.png");
    }   
 
 

@@ -1,7 +1,12 @@
+/* Player Class
+   handles:
+   1. player construction
+   2. player movement
+*/
 class Player extends Phaser.GameObjects.Sprite
 {
-   movementSpeed = 150;
-   //movementSpeed = 350;
+   //movementSpeed = 150;
+   movementSpeed = 350; // DEBUG MOVESPEED
 
    constructor(scene, x, y, p1)
    {
@@ -23,7 +28,7 @@ class Player extends Phaser.GameObjects.Sprite
    }
 
 
-   moveManager(scene)
+   movementManager(scene)
    {
       this.body.setVelocity(0);
 
@@ -47,7 +52,7 @@ class Player extends Phaser.GameObjects.Sprite
             this.flipped = false;
          }
          // UP
-         else if (scene.keyW.isDown)
+         if (scene.keyW.isDown)
          {
             this.body.setVelocityY(-this.movementSpeed);
          }
@@ -56,6 +61,10 @@ class Player extends Phaser.GameObjects.Sprite
          {
             this.body.setVelocityY( this.movementSpeed);
          }
+         // JUMP
+         if (Phaser.Input.Keyboard.JustDown(scene.keyJ)) console.log("player1 jump");
+         // SIT
+         if (scene.keyK.isDown) console.log("player1 sit");
       }
       // PLAYER 2 CONTROLS
       else
@@ -77,7 +86,7 @@ class Player extends Phaser.GameObjects.Sprite
             this.flipped = false;
          }
          // UP
-         else if (scene.cursorKeys.up.isDown)
+         if (scene.cursorKeys.up.isDown)
          {
             this.body.setVelocityY(-this.movementSpeed);
          }
@@ -86,15 +95,23 @@ class Player extends Phaser.GameObjects.Sprite
          {
             this.body.setVelocityY( this.movementSpeed);
          }
+         // JUMP
+         if (Phaser.Input.Keyboard.JustDown(scene.keyNum1)) console.log("player2 jump");
+         // SIT
+         if (scene.keyNum2.isDown) console.log("player2 sit");
       }
    }
 
    // flips player sprite
    flipSprite() {this.flipX = !this.flipX;}
 
+   // V BROKEN!! V
+
    // return normalized x position
    normPosX() {return (this.x-20)/920;}
+   //normPosX() {return (this.x-26)/(config.width-26);}
 
    // return normalized y position
    normPosY() {return (this.y-32)/476;}
+   //normPosY() {return (this.y-32)/(config.height-64);}
 }
