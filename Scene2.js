@@ -36,9 +36,7 @@ class Scene2 extends Phaser.Scene
       this.keyNum2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_TWO);
 
       // create stem
-      //this.stemTop = this.add.image(config.width/2, config.height/2 - 70, "stemTop");
-      //this.stemTop.setScale(4);
-      this.stem = new Stem(this, config.width/2, config.height/2 - 70);
+      this.stem = new Stem(this, config.width/2, config.height/2);
       
    }
 

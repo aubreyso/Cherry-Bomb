@@ -6,17 +6,27 @@
 */
 class Stem extends Phaser.GameObjects.Image
 {
-   movementSpeed = 500;
+   movementSpeed = 350;
 
    constructor(scene, x, y)
    {
       // add to scene
-      super(scene, x, y, "stemTop");
-      scene.add.existing(this);
+      //super(scene, x, y, "stemTop");
+      super(scene);
+      this.stemTop = scene.add.image(x, y, "stemTop");
+      this.stemTop.setScale(4);
+      //scene.add.existing(this);
 
-      // set physics
-      scene.physics.world.enableBody(this);
-      //this.body.collideWorldBounds = true;
+      // playerOne position
+      var x1 = scene.playerOne.x;
+      var y1 = scene.playerOne.y;
+      // playerTwo position
+      var x2 = scene.playerTwo.x;
+      var y2 = scene.playerTwo.y;
+      // compute midpoints
+      var xTarget = (x1 + x2)/2;
+      var yTarget = (y1 + y2)/2 - 70;
+      //var r1 = scene.add.line(x1, y1, xTarget, yTarget, 140, 0, 0x58a164);
 
       // set visuals
       this.setScale(4);
@@ -25,22 +35,17 @@ class Stem extends Phaser.GameObjects.Image
 
    updatePosition(scene)
    {
-      this.body.setVelocity(0);
-
       // playerOne position
       var x1 = scene.playerOne.x;
-      //var y1 = scene.playerOne.y;
+      var y1 = scene.playerOne.y;
       // playerTwo position
       var x2 = scene.playerTwo.x;
-      //var y2 = scene.playerTwo.y;
-
+      var y2 = scene.playerTwo.y;
+      // compute midpoints
       var xTarget = (x1 + x2)/2;
-      //var xTarget = Math.floor((x1 + x2)/2);
-      if (this.x < xTarget)
-         this.body.setVelocityX(this.movementSpeed);
-         //this.x += 1;
-      else if (this.x > xTarget)
-         this.body.setVelocityX(-this.movementSpeed);
-         //this.x -= 1;
+      var yTarget = (y1 + y2)/2 - 70;
+      // set stem position to midpoints
+      this.stemTop.x = xTarget;
+      this.stemTop.y = yTarget;
    }
 }
