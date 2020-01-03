@@ -10,26 +10,11 @@ class Stem extends Phaser.GameObjects.Image
 
    constructor(scene, x, y)
    {
-      // add to scene
-      //super(scene, x, y, "stemTop");
       super(scene);
       this.stemTop = scene.add.image(x, y, "stemTop");
       this.stemTop.setScale(4);
-      //scene.add.existing(this);
 
-      // playerOne position
-      var x1 = scene.playerOne.x;
-      var y1 = scene.playerOne.y;
-      // playerTwo position
-      var x2 = scene.playerTwo.x;
-      var y2 = scene.playerTwo.y;
-      // compute midpoints
-      var xTarget = (x1 + x2)/2;
-      var yTarget = (y1 + y2)/2 - 70;
-      //var r1 = scene.add.line(x1, y1, xTarget, yTarget, 140, 0, 0x58a164);
-
-      // set visuals
-      this.setScale(4);
+      // [add connection lines]
    }
 
 
@@ -41,9 +26,15 @@ class Stem extends Phaser.GameObjects.Image
       // playerTwo position
       var x2 = scene.playerTwo.x;
       var y2 = scene.playerTwo.y;
+      // compute distance between players
+      var dist = Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2));
+      console.log(dist);
+      // offset y value for stretch look
+      var stretchOffset = Math.max(dist-100, 0);
+      stretchOffset = Math.min(stretchOffset, 60);
       // compute midpoints
       var xTarget = (x1 + x2)/2;
-      var yTarget = (y1 + y2)/2 - 70;
+      var yTarget = (y1 + y2)/2 - 70 + stretchOffset;
       // set stem position to midpoints
       this.stemTop.x = xTarget;
       this.stemTop.y = yTarget;

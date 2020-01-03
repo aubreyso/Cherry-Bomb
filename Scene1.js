@@ -17,6 +17,9 @@ class Scene1 extends Phaser.Scene
 
       // load stem image
       this.load.image("stemTop", "assets/images/stem_top.png");
+
+      // load bullet image
+      this.load.image("bulletSmall", "assets/images/bullet_small.png");
    }   
 
 

@@ -6,7 +6,8 @@
 class Player extends Phaser.GameObjects.Sprite
 {
    //movementSpeed = 150;
-   movementSpeed = 350; // DEBUG MOVESPEED
+   //movementSpeed = 350; // DEBUG MOVESPEED
+   movementSpeed = 200; // DEBUG MOVESPEED
 
    constructor(scene, x, y, p1)
    {
