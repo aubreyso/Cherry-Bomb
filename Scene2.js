@@ -12,9 +12,8 @@ class Scene2 extends Phaser.Scene
       // TOP TEXT
       this.add.text(20, 20, "CHERRY\nBOMBERS", {font: "25px Impact", fill: "gray"});
 
-
       // CREATE PLAYERS
-      // create playerOne object
+      this.stem = new Stem(this, config.width/2, config.height/2);
       this.playerOne = new Player(this, config.width/2 - 50, config.height/2, true);
       this.playerTwo = new Player(this, config.width/2 + 50, config.height/2, false);
 
@@ -35,8 +34,7 @@ class Scene2 extends Phaser.Scene
       this.keyNum1 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE);
       this.keyNum2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_TWO);
 
-      // create stem
-      this.stem = new Stem(this, config.width/2, config.height/2);
+      
 
       // test bullet sprite
       /*this.bullet = this.add.image(config.width/2, config.height/2, "bulletSmall");

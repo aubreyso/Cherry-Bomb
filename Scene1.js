@@ -15,8 +15,9 @@ class Scene1 extends Phaser.Scene
          frameHeight: 16
       });
 
-      // load stem image
+      // load stem images
       this.load.image("stemTop", "assets/images/stem_top.png");
+      this.load.image("stemRod", "assets/images/stem_rod.png");
 
       // load bullet image
       this.load.image("bulletSmall", "assets/images/bullet_small.png");
