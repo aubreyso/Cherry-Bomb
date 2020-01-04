@@ -51,25 +51,25 @@ class Stem extends Phaser.GameObjects.Image
       this.stemTop.x = xTarget;
       this.stemTop.y = yTarget;
       this.stemL.x = xTarget;
-      this.stemL.y = yTarget;
+      this.stemL.y = yTarget+5;
       this.stemR.x = xTarget;
-      this.stemR.y = yTarget;
+      this.stemR.y = yTarget+5;
 
 
       // rotate rod1 
-      var adj1 = -(yTarget-y1);                                                  // adjacent length
-      var hyp1 = Math.sqrt(Math.pow((xTarget-x1),2) + Math.pow((yTarget-y1),2)); // hypotnuse length
-      var rot1 = Math.acos(adj1/hyp1);                                           // get angle of rot
-      this.stemL.setRotation(rot1);                                              // rotate rod
-      this.stemL.scaleY = hyp1/4+10;                                             // scale length rod1
+      var adj1 = -(yTarget-y1+15);                                                  // adjacent length
+      var hyp1 = Math.sqrt(Math.pow((xTarget-x1),2) + Math.pow((yTarget-y1+15),2)); // hypotnuse length
+      var rot1 = Math.acos(adj1/hyp1);                                              // get angle of rot
+      if (x1 < x2) this.stemL.setRotation(rot1);                                    // rotate rod
+      else         this.stemL.setRotation(-rot1);
+      this.stemL.scaleY = hyp1/4;                                                   // scale length rod1
 
       // rotate rod2 
-      var adj2 = -(yTarget-y2);                                                  // adjacent length
-      var hyp2 = Math.sqrt(Math.pow((xTarget-x2),2) + Math.pow((yTarget-y2),2)); // hypotnuse length
-      var rot2 = Math.acos(adj2/hyp2);                                           // get angle of rot
-      this.stemR.setRotation(-rot2);                                             // rotate rod
-      this.stemR.scaleY = hyp2/4+10;                                             // scale length rod1
-
-      //console.log(rot1);
+      var adj2 = -(yTarget-y2+15);                                                  // adjacent length
+      var hyp2 = Math.sqrt(Math.pow((xTarget-x2),2) + Math.pow((yTarget-y2+15),2)); // hypotnuse length
+      var rot2 = Math.acos(adj2/hyp2);                                              // get angle of rot
+      if (x1 < x2) this.stemR.setRotation(-rot2);                                   // rotate rod
+      else         this.stemR.setRotation(rot2);
+      this.stemR.scaleY = hyp2/4;                                                   // scale length rod1
    }
 }
