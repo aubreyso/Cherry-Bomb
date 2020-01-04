@@ -37,12 +37,12 @@ class Scene2 extends Phaser.Scene
       
 
       // test bullet sprite
-      /*this.bullet = this.add.image(config.width/2, config.height/2, "bulletSmall");
+      this.bullet = this.add.image(config.width/2, config.height/2, "bulletSmall");
       this.bullet.setScale(4);
       this.bullet = this.add.image(config.width/2, config.height/2+30, "bulletSmall");
       this.bullet.setScale(4);
       this.bullet = this.add.image(config.width/2, config.height/2+60, "bulletSmall");
-      this.bullet.setScale(4);*/
+      this.bullet.setScale(4);
    }
 
 
