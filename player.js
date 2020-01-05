@@ -21,7 +21,7 @@ class Player extends Phaser.GameObjects.Sprite
 
       // set visuals
       this.play("player_idle");
-      this.setScale(4);
+      this.setScale(gameSettings.spriteScale);
       this.flipped = false;
 
       // set playerOne/playerTwo controls
@@ -32,6 +32,7 @@ class Player extends Phaser.GameObjects.Sprite
    movementManager(scene)
    {
       this.body.setVelocity(0);
+      var root2 = Math.sqrt(2);
 
       // PLAYER 1 CONTROLS
       if (this.p1)
@@ -39,21 +40,49 @@ class Player extends Phaser.GameObjects.Sprite
          // LEFT
          if (scene.keyA.isDown)
          {
-            this.body.setVelocityX(-this.movementSpeed);
             // flip sprite
             if (this.flipped == false) this.flipSprite();
             this.flipped = true;
+            // up left
+            if (scene.keyW.isDown)
+            {
+               this.body.setVelocityX(-this.movementSpeed/root2);
+               this.body.setVelocityY(-this.movementSpeed/root2);
+            }
+            // down left
+            else if (scene.keyS.isDown)
+            {
+               this.body.setVelocityX(-this.movementSpeed/root2);
+               this.body.setVelocityY( this.movementSpeed/root2);
+            }
+            // left
+            else
+               this.body.setVelocityX(-this.movementSpeed);
          }
          // RIGHT
          else if (scene.keyD.isDown)
          {
-            this.body.setVelocityX( this.movementSpeed);
             // flip sprite
             if (this.flipped == true) this.flipSprite();
             this.flipped = false;
+            // up right
+            if (scene.keyW.isDown)
+            {
+               this.body.setVelocityX( this.movementSpeed/root2);
+               this.body.setVelocityY(-this.movementSpeed/root2);
+            }
+            // down right
+            else if (scene.keyS.isDown)
+            {
+               this.body.setVelocityX(this.movementSpeed/root2);
+               this.body.setVelocityY(this.movementSpeed/root2);
+            }
+            // right
+            else
+               this.body.setVelocityX( this.movementSpeed);
          }
          // UP
-         if (scene.keyW.isDown)
+         else if (scene.keyW.isDown)
          {
             this.body.setVelocityY(-this.movementSpeed);
          }
@@ -73,21 +102,49 @@ class Player extends Phaser.GameObjects.Sprite
          // LEFT
          if (scene.cursorKeys.left.isDown)
          {
-            this.body.setVelocityX(-this.movementSpeed);
             // flip sprite
             if (this.flipped == false) this.flipSprite();
             this.flipped = true;
+            // up left
+            if (scene.cursorKeys.up.isDown)
+            {
+               this.body.setVelocityX(-this.movementSpeed/root2);
+               this.body.setVelocityY(-this.movementSpeed/root2);
+            }
+            // down left
+            else if (scene.cursorKeys.down.isDown)
+            {
+               this.body.setVelocityX(-this.movementSpeed/root2);
+               this.body.setVelocityY( this.movementSpeed/root2);
+            }
+            // left
+            else
+               this.body.setVelocityX(-this.movementSpeed);
          }
          // RIGHT
          else if (scene.cursorKeys.right.isDown)
          {
-            this.body.setVelocityX( this.movementSpeed);
             // flip sprite
             if (this.flipped == true) this.flipSprite();
             this.flipped = false;
+            // up right
+            if (scene.cursorKeys.up.isDown)
+            {
+               this.body.setVelocityX( this.movementSpeed/root2);
+               this.body.setVelocityY(-this.movementSpeed/root2);
+            }
+            // down right
+            else if (scene.cursorKeys.down.isDown)
+            {
+               this.body.setVelocityX(this.movementSpeed/root2);
+               this.body.setVelocityY(this.movementSpeed/root2);
+            }
+            // right
+            else
+               this.body.setVelocityX( this.movementSpeed);
          }
          // UP
-         if (scene.cursorKeys.up.isDown)
+         else if (scene.cursorKeys.up.isDown)
          {
             this.body.setVelocityY(-this.movementSpeed);
          }
@@ -108,11 +165,11 @@ class Player extends Phaser.GameObjects.Sprite
 
    // V BROKEN!! V
 
-   // return normalized x position
+   /*// return normalized x position
    normPosX() {return (this.x-20)/920;}
    //normPosX() {return (this.x-26)/(config.width-26);}
 
    // return normalized y position
    normPosY() {return (this.y-32)/476;}
-   //normPosY() {return (this.y-32)/(config.height-64);}
+   //normPosY() {return (this.y-32)/(config.height-64);}*/
 }

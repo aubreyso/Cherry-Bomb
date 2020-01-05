@@ -16,16 +16,16 @@ class Stem extends Phaser.GameObjects.Image
       // add stem rod (left)
       this.stemL = scene.add.image(x, y, "stemRod");
       this.stemL.setOrigin(0.5,0);
-      this.stemL.setScale(4);
+      this.stemL.setScale(gameSettings.spriteScale);
 
       // add stem rod (right)
       this.stemR = scene.add.image(x, y, "stemRod");
       this.stemR.setOrigin(0.5,0);
-      this.stemR.setScale(4);
+      this.stemR.setScale(gameSettings.spriteScale);
 
       // add stem top
       this.stemTop = scene.add.image(x, y, "stemTop");
-      this.stemTop.setScale(4);
+      this.stemTop.setScale(gameSettings.spriteScale);
    }
 
 
@@ -55,7 +55,6 @@ class Stem extends Phaser.GameObjects.Image
       this.stemR.x = xTarget;
       this.stemR.y = yTarget+5;
 
-
       // rotate rod1 
       var adj1 = -(yTarget-y1+15);                                                  // adjacent length
       var hyp1 = Math.sqrt(Math.pow((xTarget-x1),2) + Math.pow((yTarget-y1+15),2)); // hypotnuse length
@@ -63,6 +62,7 @@ class Stem extends Phaser.GameObjects.Image
       if (x1 < x2) this.stemL.setRotation(rot1);                                    // rotate rod
       else         this.stemL.setRotation(-rot1);
       this.stemL.scaleY = hyp1/4;                                                   // scale length rod1
+      this.stemL.scaleY = 8;
 
       // rotate rod2 
       var adj2 = -(yTarget-y2+15);                                                  // adjacent length
@@ -71,5 +71,6 @@ class Stem extends Phaser.GameObjects.Image
       if (x1 < x2) this.stemR.setRotation(-rot2);                                   // rotate rod
       else         this.stemR.setRotation(rot2);
       this.stemR.scaleY = hyp2/4;                                                   // scale length rod1
+      this.stemR.scaleY = 8;
    }
 }

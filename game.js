@@ -1,3 +1,7 @@
+var gameSettings = {
+   spriteScale: 4
+}
+
 // Store game instance config variables   
 var config = {
    width: 960,
