@@ -12,6 +12,10 @@ class Scene2 extends Phaser.Scene
       // TOP TEXT
       this.add.text(20, 20, "CHERRY\nBOMBERS", {font: "25px Impact", fill: "gray"});
 
+      // CREATE GROUPS
+      this.players = this.physics.add.group();
+      this.bullets = this.physics.add.group();
+
       // CREATE PLAYERS
       this.stem = new Stem(this, config.width/2, config.height/2);
       this.playerOne = new Player(this, config.width/2 - 50, config.height/2, true);
@@ -34,15 +38,20 @@ class Scene2 extends Phaser.Scene
       this.keyNum1 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE);
       this.keyNum2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_TWO);
 
-      
+      //this.physics.add.collider(this.playerOne, this.playerTwo);
 
-      // test bullet sprite
-      /*this.bullet = this.add.image(config.width/2+200, config.height/2, "bulletSmall");
-      this.bullet.setScale(4);
-      this.bullet = this.add.image(config.width/2+200, config.height/2+30, "bulletSmall");
-      this.bullet.setScale(4);
-      this.bullet = this.add.image(config.width/2+200, config.height/2+60, "bulletSmall");
-      this.bullet.setScale(4);*/
+      // create bullet instances
+      for (var i=0; i<5; i++)
+         {var bullet = new Bullet(this, config.width/2+200, config.height/8+(100*i));}
+      // overlap function
+      this.physics.add.overlap(this.players, this.bullets, this.hurtPlayer, null, this);
+   }
+
+
+   hurtPlayer(player, bullet)
+   {
+      bullet.destroy();
+      console.log("ouch!");
    }
 
 

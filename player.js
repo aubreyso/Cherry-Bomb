@@ -26,6 +26,9 @@ class Player extends Phaser.GameObjects.Sprite
 
       // set playerOne/playerTwo controls
       this.p1 = p1;
+
+      // add to players group
+      scene.players.add(this);
    }
 
 
